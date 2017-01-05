@@ -38,15 +38,26 @@
                         <thead>
                             <tr>
                                 <th>Número</th>
-                                <th>Picas</th>
                                 <th>Fijas</th>
+                                <th>Picas</th>
                             </tr>
                         </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    <script id="row-template" type="text/x-handlebars-template">
+        <tr>
+          <td>{{number}}</td>
+          <td>{{fijas}}</td>
+          <td>{{picas}}</td>
+        </tr>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
     <script src="app.js">
 
     </script>

@@ -20,7 +20,6 @@ var splitNumber = function(attempt){
     for (var i = 0, len = sNumber.length; i < len; i += 1) {
         output.push(+sNumber.charAt(i));
     }
-    console.log(output);
     return output;
 
 }
@@ -37,7 +36,6 @@ var findRepeat = function(attempt){
             results.push(sorted_arr[i]);
         }
     }
-    console.log(results);
     if (results.length == 0) {
         return attempt;
     }else{
@@ -46,27 +44,59 @@ var findRepeat = function(attempt){
 }
 var validation = function(attempt){
     var repeats = findRepeat(attempt);
-    console.log (repeats)
     if (repeats != false && repeats.length == 4){
-        console.log("true")
-        return true;
+        return repeats;
     }else {
         {
-        console.log("false")
         return false;
         }
     }
 
 }
+var compare = function(master,number){
+    console.log("master: " + master + "number: "+ number)
+    var results = [0 ,0];
+    for(var i = 1 in number){
+        for(var j = 1 in number){
+            if (i == j && master[i] == number[j]){
+                console.log("fija");
+                results[0] += 1;                    //fijas
+            }else if (master[i] == number[j]) {
+                results[1] +=1;                     //picas
+                console.log("pica");
+            }
+        }
+    }
+    console.log(results);
+    return results;
+}
 
 
 $(document).ready(function(){
+    var template = Handlebars.compile($('#row-template').html());
     numberMaster = generateNumber();
+    console.log(numberMaster);
     $(document).keypress(function(e){
         if (e.which == 13) {
             var attempt = $(".number input").val();
-            validation(attempt);
-            // if attempt.length != 4 &&
+            $(".number input").val("");
+            attempt = validation(attempt);
+            if(attempt != false){
+                $("span").removeClass("alarm");
+                var results = compare(numberMaster, attempt);
+                var row = {
+                    number: attempt,
+                    picas: results[1],
+                    fijas: results[0]
+                }
+                $("tbody").append(template(row));
+                if (row.fijas == 4){
+                    console.log("termino el juego");
+                }
+            }else{
+                $("span").addClass("alarm");
+            }
+
         }
     })
 });
