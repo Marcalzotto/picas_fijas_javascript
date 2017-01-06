@@ -68,12 +68,23 @@ var compare = function(master,number){
     }
     return results;
 }
+var print = function(master){
+    for (i = 0; i < 4;i++){
+        console.log(master[i]);
+    }
+}
 
 
 $(document).ready(function(){
     var template = Handlebars.compile($('#row-template').html());
     numberMaster = generateNumber();
-    console.log(numberMaster);
+    print(numberMaster);
+    $(".button").on("click", function(e){
+        $("tbody").empty();
+        numberMaster = generateNumber();
+        print(numberMaster);
+
+    })
     $(document).keypress(function(e){
         if (e.which == 13) {
             var attempt = $(".number input").val();
