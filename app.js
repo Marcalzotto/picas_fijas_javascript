@@ -54,7 +54,6 @@ var validation = function(attempt){
 
 }
 var compare = function(master,number){
-    console.log("master: " + master + "number: "+ number)
     var results = [0 ,0];
     for(var i = 1 in number){
         for(var j = 1 in number){
@@ -67,7 +66,6 @@ var compare = function(master,number){
             }
         }
     }
-    console.log(results);
     return results;
 }
 
@@ -91,6 +89,9 @@ $(document).ready(function(){
                 }
                 $("tbody").append(template(row));
                 if (row.fijas == 4){
+                    $('#modal').modal({
+                        show: true
+                    });
                     console.log("termino el juego");
                 }
             }else{
