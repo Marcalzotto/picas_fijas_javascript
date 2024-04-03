@@ -1,5 +1,6 @@
 var generateNumber = function(){
     var numberMaster = shuffle(Array.from(Array(10).keys()));
+    
     return numberMaster;
 }
 
@@ -74,6 +75,16 @@ var print = function(master){
     }
 }
 
+let openCandado = async () => {
+
+ const url = '192.168.1.250/cm?cmnd=Power%20on'; 
+  setTimeout(async () => {
+    const result = await fetch(url);
+    const catResult = await result.json();
+    console.log(catResult);  
+  }, 500);  
+}
+
 
 $(document).ready(function(){
     var template = Handlebars.compile($('#row-template').html());
@@ -103,7 +114,8 @@ $(document).ready(function(){
                     $('#modal').modal({
                         show: true
                     });
-                    console.log("termino el juego");
+                    console.log("termino el juego probando");
+                    openCandado();
                 }
             }else{
                 $("span").addClass("alarm");
