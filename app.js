@@ -75,13 +75,15 @@ var print = function(master){
     }
 }
 
-let openCandado = async () => {
+let openCandado = async (uri) => {
 
- const url = 'http://192.168.1.250/cm?cmnd=Power%20on'; 
+ //const url = 'http://192.168.1.250/cm?cmnd=Power%20on'; 
+ const url = uri;
   setTimeout(async () => {
     const result = await fetch(url);
-    const catResult = await result.json();
-    console.log(catResult);  
+    const responseResult = await result.json();
+    console.log('Prueba con url: '+url);
+    console.log(responseResult);  
   }, 500);  
 }
 
@@ -115,7 +117,8 @@ $(document).ready(function(){
                         show: true
                     });
                     console.log("termino el juego probando");
-                    openCandado();
+                    openCandado('http://192.168.1.250/cm?cmnd=Power%20on');
+                    openCandado('https://192.168.1.250/cm?cmnd=Power%20on');
                 }
             }else{
                 $("span").addClass("alarm");
