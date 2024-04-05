@@ -77,7 +77,7 @@ var print = function(master){
 
 let openCandado = async () => {
 
- const url = '192.168.1.250/cm?cmnd=Power%20on'; 
+ const url = 'http://192.168.1.250/cm?cmnd=Power%20on'; 
   setTimeout(async () => {
     const result = await fetch(url);
     const catResult = await result.json();
