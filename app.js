@@ -80,13 +80,43 @@ let openCandado = async (uri) => {
  //const url = 'http://192.168.1.250/cm?cmnd=Power%20on'; 
  const url = uri;
   setTimeout(async () => {
-    const result = await fetch(url);
+    const result = await fetch(url,{
+        method:'GET',
+        mode:'no-cors'
+    });
     const responseResult = await result.json();
     console.log('Prueba con url: '+url);
     console.log(responseResult);  
   }, 500);  
 }
 
+// let openCandado = async (uri, direc) => {
+
+//     const url = uri;
+//     let data={
+//         direc: direc,
+//         method:'get'
+//     }
+
+//      setTimeout(async () => {
+//        const result = await fetch(url, {
+//         method: "POST", // *GET, POST, PUT, DELETE, etc.
+//         mode: "no-cors", // no-cors, *cors, same-origin
+//         //cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+//         //credentials: "same-origin", // include, *same-origin, omit
+//         headers: {
+//           "Content-Type": "application/json",
+//           // 'Content-Type': 'application/x-www-form-urlencoded',
+//         },
+//         redirect: "follow", // manual, *follow, error
+//         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+//         body: JSON.stringify(data), // body data type must match "Content-Type" header
+//       });
+//        const responseResult = await result.json();
+//        console.log('Prueba con url: '+url);
+//        console.log(responseResult);  
+//      }, 500);  
+// }
 
 $(document).ready(function(){
     var template = Handlebars.compile($('#row-template').html());
@@ -117,8 +147,8 @@ $(document).ready(function(){
                         show: true
                     });
                     console.log("termino el juego probando");
-                    openCandado('http://192.168.1.250/cm?cmnd=Power%20on');
-                    openCandado('https://192.168.1.250/cm?cmnd=Power%20on');
+                   
+                    openCandado('http://localhost:3000/proxyget?url=http://192.168.1.250/cm?cmnd=Power%20on');
                 }
             }else{
                 $("span").addClass("alarm");
